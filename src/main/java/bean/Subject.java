@@ -1,33 +1,41 @@
 package bean;
 
 public class Subject {
-	private String subjectCd;
-	
-	private String subjectName;
-	
-	private School school;
 
-	public String getSubjectCd() {
-		return subjectCd;
-	}
+    private String schoolCd;
+    private String subjectCd;
+    private String subjectName;
+    private School school;
 
-	public void setSubjectCd(String subjectCd) {
-		this.subjectCd = subjectCd;
-	}
+    public String getSchoolCd() {
+        return schoolCd;
+    }
 
-	public String getSubjectName() {
-		return subjectName;
-	}
+    public void setSchoolCd(String schoolCd) {
+        this.schoolCd = schoolCd;
+    }
 
-	public void setSubjectName(String subjectName) {
-		this.subjectName = subjectName;
-	}
+    public String getSubjectCd() {
+        return subjectCd;
+    }
 
-	public School getSchool() {
-		return school;
-	}
+    public void setSubjectCd(String subjectCd) {
+        this.subjectCd = subjectCd;
+    }
 
-	public void setSchool(School school) {
-		this.school = school;
-	}
-}//abc
+    public String getSubjectName() {
+        return subjectName;
+    }
+
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
+    }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
+}
