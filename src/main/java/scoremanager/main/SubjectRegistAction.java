@@ -11,15 +11,15 @@ import tool.Action;
 public class SubjectRegistAction extends Action {
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res)
+    public void execute(HttpServletRequest req, HttpServletResponse res)
             throws Exception {
 
         SchoolDao dao = new SchoolDao();
-        List<School> list = dao.findAll();
+        List<School> list = dao.list();   // ← 追加した list() を使う
 
         req.setAttribute("schoolList", list);
 
-        return "/scoremanager/main/subject_regist.jsp";
-
+        req.getRequestDispatcher("/scoremanager/main/subject_regist.jsp")
+           .forward(req, res);
     }
 }

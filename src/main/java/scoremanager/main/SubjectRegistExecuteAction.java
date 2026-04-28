@@ -11,7 +11,7 @@ import tool.Action;
 public class SubjectRegistExecuteAction extends Action {
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res) 
+    public void execute(HttpServletRequest req, HttpServletResponse res) 
             throws Exception {
 
         req.setCharacterEncoding("UTF-8");
@@ -27,13 +27,14 @@ public class SubjectRegistExecuteAction extends Action {
         subject.setSubjectCd(subjectCd);
         subject.setSubjectName(subjectName);
         subject.setSchool(school);
-        subject.setSchoolCd(schoolCd); 
+        subject.setSchoolCd(schoolCd);
 
         SubjectDao dao = new SubjectDao();
         dao.insert(subject);
 
         req.setAttribute("subject", subject);
 
-        return "subject_regist_done.jsp";
+        req.getRequestDispatcher("/scoremanager/main/subject_regist_done.jsp")
+           .forward(req, res);
     }
 }
