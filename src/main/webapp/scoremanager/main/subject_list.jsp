@@ -34,12 +34,20 @@
 							<td>${subject.subjectName}</td>
 							
 							<td class="text-center">
+
 							    <a href="SubjectUpdate.action?subject_cd=${subject.subjectCd}" 
 							       class="btn btn-outline-success btn-sm">変更</a>
 							</td>
 							<td class="text-center">
 							    <a href="SubjectDelete.action?subject_cd=${subject.subjectCd}" 
 							       class="btn btn-outline-danger btn-sm">削除</a>
+							</td>
+
+
+								<a href="SubjectUpdate.action?cd=${subject.subjectCd}" class="btn btn-outline-success btn-sm">変更</a>
+							</td>
+							<td class="text-center">
+								<a href="SubjectDelete.action?cd=${subject.subjectCd}" class="btn btn-outline-danger btn-sm">削除</a>
 							</td>
 
 						</tr>
