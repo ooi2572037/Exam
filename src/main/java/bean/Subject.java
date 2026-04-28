@@ -1,18 +1,41 @@
 package bean;
 
-import java.io.Serializable;
+public class Subject {
 
-public class Subject implements Serializable {
-    private String cd;   // 科目コード
-    private String name; // 科目名
-    private School school; // 所属校（既存のSchoolクラスを使用）
+    private String schoolCd;
+    private String subjectCd;
+    private String subjectName;
+    private School school;
 
-    public String getCd() { return cd; }
-    public void setCd(String cd) { this.cd = cd; }
+    public String getSchoolCd() {
+        return schoolCd;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public void setSchoolCd(String schoolCd) {
+        this.schoolCd = schoolCd;
+    }
 
-    public School getSchool() { return school; }
-    public void setSchool(School school) { this.school = school; }
-}
+    public String getSubjectCd() {
+        return subjectCd;
+    }
+
+    public void setSubjectCd(String subjectCd) {
+        this.subjectCd = subjectCd;
+    }
+
+    public String getSubjectName() {
+        return subjectName;
+    }
+
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
+    }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
+}//subject
