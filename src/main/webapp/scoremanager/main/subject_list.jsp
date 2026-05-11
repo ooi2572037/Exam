@@ -14,7 +14,7 @@
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目管理</h2>
 			
 			<div class="my-3 text-end">
-				<a href="SubjectCreate.action" class="btn btn-primary">新規登録</a>
+				<a href="SubjectRegist.action" class="btn btn-primary">新規登録</a>
 			</div>
 
 			<table class="table table-hover mt-3">
@@ -34,11 +34,14 @@
 							<td>${subject.subjectName}</td>
 							
 							<td class="text-center">
-								<a href="SubjectUpdate.action?cd=${subject.subjectCd}" class="btn btn-outline-success btn-sm">変更</a>
+							    <a href="SubjectUpdate.action?subject_cd=${subject.subjectCd}" 
+							       class="btn btn-outline-success btn-sm">変更</a>
 							</td>
 							<td class="text-center">
-								<a href="SubjectDelete.action?cd=${subject.subjectCd}" class="btn btn-outline-danger btn-sm">削除</a>
+							    <a href="SubjectDelete.action?subject_cd=${subject.subjectCd}" 
+							       class="btn btn-outline-danger btn-sm">削除</a>
 							</td>
+
 						</tr>
 					</c:forEach>
 				</tbody>

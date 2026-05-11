@@ -1,4 +1,4 @@
-package scoremanager;
+package scoremanager; // .main を追加
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -26,8 +26,8 @@ public class StudentUpdateExecuteAction extends Action {
         }
 
         // パラメータ取得
-        String studentNo = req.getParameter("student_no");
-        String studentName = req.getParameter("student_name");
+        String studentNo = req.getParameter("no");   // JSPの name="no" に合わせる
+        String studentName = req.getParameter("name"); // JSPの name="name" に合わせる
         String entYearStr = req.getParameter("ent_year");
         String classNum = req.getParameter("class_num");
         String isAttendStr = req.getParameter("is_attend");
