@@ -9,7 +9,7 @@ public class Test implements java.io.Serializable {
     private int point;
     private String classNum;
 
-    // ★ 追加：学生名
+    // ★ 追加：学生名（DBには無いが表示用に必要）
     private String studentName;
 
     public String getStudentNo() {

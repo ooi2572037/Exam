@@ -11,6 +11,7 @@ import bean.Test;
 
 public class TestDao extends Dao {
 
+
     public Test get(String studentNo, String subjectCd, School school, int no) throws Exception {
 
         Test test = null;
@@ -44,6 +45,7 @@ public class TestDao extends Dao {
 
         return test;
     }
+
 
     public List<Test> findByCondition(School school, String subjectCd, String classNum) throws Exception {
 
@@ -155,4 +157,40 @@ public class TestDao extends Dao {
         st.close();
         con.close();
     }
+    /**
+     * 学校に紐づく全成績を取得
+     */
+    public List<Test> findAll(School school) throws Exception {
+
+        List<Test> list = new ArrayList<>();
+
+        Connection con = getConnection();
+
+        PreparedStatement st = con.prepareStatement(
+            "SELECT * FROM test WHERE school_cd=? ORDER BY subject_cd, class_num, student_no, no"
+        );
+
+        st.setString(1, school.getSchoolCd());
+
+        ResultSet rs = st.executeQuery();
+
+        while (rs.next()) {
+            Test test = new Test();
+            test.setStudentNo(rs.getString("student_no"));
+            test.setSubjectCd(rs.getString("subject_cd"));
+            test.setSchoolCd(rs.getString("school_cd"));
+            test.setNo(rs.getInt("no"));
+            test.setPoint(rs.getInt("point"));
+            test.setClassNum(rs.getString("class_num"));
+
+            list.add(test);
+        }
+
+        rs.close();
+        st.close();
+        con.close();
+
+        return list;
+    }
+
 }
