@@ -1,56 +1,60 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
-<div class="container mt-5" style="max-width: 1000px;">
-    
-    <div class="d-flex justify-content-between align-items-end mb-3">
-        <div>
-            <h2 class="h4 mb-0 fw-bold">成績管理システム</h2>
-            <small class="text-muted">全学生の成績一覧を表示しています</small>
-        </div>
-        <div>
-            <a href="TestStudentList.action" class="btn btn-sm btn-outline-secondary">学生別参照</a>
-            <a href="TestSubjectList.action" class="btn btn-sm btn-outline-secondary">科目別参照</a>
-        </div>
+<div class="container-fluid mt-3">
+    <div class="bg-light p-3 mb-4 border-bottom">
+        <h2 class="h5 mb-0 fw-bold text-dark">成績管理</h2>
     </div>
 
-    <div class="card shadow-sm">
-        <div class="card-body p-0">
+    <div class="px-3">
+        <form action="TestList.action" method="get" class="row gx-3 gy-3 align-items-end">
             
-            <table class="table table-striped table-hover mb-0">
-                <thead class="table-light">
-                    <tr>
-                        <th class="ps-4">学生番号</th>
-                        <th>科目コード</th>
-                        <th class="text-center">回数</th>
-                        <th class="text-end">点数</th>
-                        <th class="text-center">クラス</th>
-                        <th class="text-center">アクション</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="t" items="${testList}">
-                        <tr class="align-middle">
-                            <td class="ps-4 fw-bold">${t.studentNo}</td>
-                            <td><span class="badge bg-secondary-subtle text-dark border">${t.subjectCd}</span></td>
-                            <td class="text-center">${t.no}回</td>
-                            <td class="text-end">
-                                <span class="h6 mb-0 fw-bold ${t.point < 60 ? 'text-danger' : ''}">${t.point}</span>
-                                <small class="text-muted">点</small>
-                            </td>
-                            <td class="text-center">${t.classNum}</td>
-                            <td class="text-center">
-                               
-                                <a href="TestUpdate.action?studentNo=${t.studentNo}&subjectCd=${t.subjectCd}&no=${t.no}" 
-                                   class="text-decoration-none me-2">変更</a>
-                                <a href="TestDelete.action?studentNo=${t.studentNo}&subjectCd=${t.subjectCd}&no=${t.no}" 
-                                   class="text-danger text-decoration-none"
-                                   onclick="return confirm('削除しますか？')">削除</a>
-                            </td>
-                        </tr>
+            <div class="col-auto">
+                <label class="form-label small fw-bold mb-1">入学年度</label>
+                <select name="f1" class="form-select form-select-sm" style="width: 140px;">
+                    <option value="">--------</option>
+                    <c:forEach var="year" items="${entYearList}">
+                        <option value="${year}" ${param.f1 == year ? 'selected' : ''}>${year}</option>
                     </c:forEach>
-                </tbody>
-            </table>
-        </div>
+                </select>
+            </div>
+
+            <div class="col-auto">
+                <label class="form-label small fw-bold mb-1">クラス</label>
+                <select name="f2" class="form-select form-select-sm" style="width: 120px;">
+                    <option value="">--------</option>
+                    <c:forEach var="cNum" items="${classList}">
+                        <option value="${cNum}" ${param.f2 == cNum ? 'selected' : ''}>${cNum}</option>
+                    </c:forEach>
+                </select>
+            </div>
+
+            <div class="col-auto">
+                <label class="form-label small fw-bold mb-1">科目</label>
+                <select name="f3" class="form-select form-select-sm" style="width: 300px;">
+                    <option value="">--------------------------------</option>
+                    <c:forEach var="sub" items="${subjectList}">
+                        <option value="${sub.subjectCd}" ${param.f3 == sub.subjectCd ? 'selected' : ''}>
+                            ${sub.subjectName}
+                        </option>
+                    </c:forEach>
+                </select>
+            </div>
+
+            <div class="col-auto">
+                <label class="form-label small fw-bold mb-1">回数</label>
+                <select name="f4" class="form-select form-select-sm" style="width: 100px;">
+                    <option value="">--------</option>
+                    <option value="1" ${param.f4 == '1' ? 'selected' : ''}>1</option>
+                    <option value="2" ${param.f4 == '2' ? 'selected' : ''}>2</option>
+                </select>
+            </div>
+
+            <div class="col-auto">
+                <button type="submit" class="btn btn-secondary btn-sm px-4 shadow-sm">検索</button>
+            </div>
+        </form>
     </div>
+
+    <hr class="mt-4 mx-3">
 </div>
