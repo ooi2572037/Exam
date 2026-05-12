@@ -16,6 +16,7 @@ public class FrontController extends HttpServlet {
         try {
             String path = req.getServletPath().substring(1);
             String name = path.replace(".action", "Action").replace('/', '.');
+            System.out.println("探そうとしているクラス名: " + name); // これを追加してコンソールを見る
 
             Action action = (Action) Class.forName(name).getDeclaredConstructor().newInstance();
 

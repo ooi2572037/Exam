@@ -2,48 +2,47 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
 <c:import url="/common/base.jsp">
-    <c:param name="title">成績一覧</c:param>
+    <c:param name="title">学生別成績一覧</c:param>
     <c:param name="scripts"></c:param>
 
     <c:param name="content">
-        <section class="me-4">
 
-            <h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">
-                成績一覧
-            </h2>
+        <div class="container mt-4" style="max-width: 800px;">
 
-            <!-- 検索条件の表示 -->
-            <div class="mb-3">
-                <p>科目：${subject.subjectName}</p>
-                <p>クラス：${classroom.className}</p>
-                <p>年度：${year}</p>
-            </div>
+            <h2 class="h4 fw-bold mb-4">学生別成績一覧</h2>
 
-            <!-- 成績一覧テーブル -->
-            <table class="table table-hover mt-3">
-                <thead>
-                    <tr>
-                        <th>学生番号</th>
-                        <th>氏名</th>
-                        <th>点数</th>
-                    </tr>
-                </thead>
+            <p class="mb-3">
+                学生番号：<strong>${studentNo}</strong>
+            </p>
 
-                <tbody>
-                    <c:forEach var="score" items="${scoreList}">
-                        <tr>
-                            <td>${score.student.studentNo}</td>
-                            <td>${score.student.studentName}</td>
-                            <td>${score.point}</td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+           <table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>科目コード</th>
+            <th>回数</th>
+            <th>点数</th>
+            <th>学生名</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <c:forEach var="t" items="${testList}">
+            <tr>
+                <td>${t.subjectCd}</td>
+                <td>${t.no}回</td>
+                <td>${t.point}点</td>
+                <td>${t.studentName}</td>
+            </tr>
+        </c:forEach>
+    </tbody>
+</table>
+           
 
             <div class="mt-4">
-                <a href="TestList.action" class="btn btn-secondary">検索画面に戻る</a>
+                <a href="TestSearch.action" class="btn btn-secondary">検索画面に戻る</a>
             </div>
 
-        </section>
+        </div>
+
     </c:param>
 </c:import>

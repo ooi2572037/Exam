@@ -2,12 +2,8 @@ package scoremanager.main;
 
 import java.util.List;
 
-import bean.ClassNum;
-import bean.Subject;
 import bean.Teacher;
 import bean.Test;
-import dao.ClassNumDao;
-import dao.SubjectDao;
 import dao.TestDao;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -22,39 +18,34 @@ public class TestListStudentAction extends Action {
         HttpSession session = req.getSession();
         Teacher teacher = (Teacher) session.getAttribute("user");
 
-        // ログインチェック
         if (teacher == null) {
             req.getRequestDispatcher("/login.jsp").forward(req, res);
             return;
         }
 
-        // test_list.jsp から送られる検索条件
-        String subjectCd = req.getParameter("subject_cd");
-        String classNumCd = req.getParameter("class_num");
+        // ★ 学生番号を取得
+        String studentNo = req.getParameter("student_no");
+
+        if (studentNo == null || studentNo.isEmpty()) {
+            req.setAttribute("error", "学生番号が指定されていません");
+            req.getRequestDispatcher("/error.jsp").forward(req, res);
+            return;
+        }
 
         // DAO
-        SubjectDao subjectDao = new SubjectDao();
-        ClassNumDao classNumDao = new ClassNumDao();
         TestDao testDao = new TestDao();
 
-        // 科目・クラス情報を取得
-        Subject subject = subjectDao.get(subjectCd, teacher.getSchool());
-        ClassNum classNum = classNumDao.get(classNumCd, teacher.getSchool());
-
-        // 成績一覧を取得（TestDao）
-        List<Test> testList = testDao.findByCondition(
+        // ★ 学生の全成績を取得
+        List<Test> testList = testDao.findByStudent(
             teacher.getSchool(),
-            subjectCd,
-            classNumCd
+            studentNo
         );
 
-        // JSP に渡す
-        req.setAttribute("subject", subject);
-        req.setAttribute("classNum", classNum);
+        req.setAttribute("studentNo", studentNo);
         req.setAttribute("testList", testList);
 
-        // 成績一覧 JSP へ
         req.getRequestDispatcher("/scoremanager/main/test_list_student.jsp")
            .forward(req, res);
     }
 }
+

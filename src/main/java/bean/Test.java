@@ -9,7 +9,6 @@ public class Test implements java.io.Serializable {
     private int point;
     private String classNum;
 
-    // ★ 追加：学生名（DBには無いが表示用に必要）
     private String studentName;
 
     public String getStudentNo() {
@@ -54,11 +53,11 @@ public class Test implements java.io.Serializable {
         this.classNum = classNum;
     }
 
-    // ★ 追加：学生名 getter/setter
     public String getStudentName() {
         return studentName;
     }
     public void setStudentName(String studentName) {
         this.studentName = studentName;
     }
+    
 }

@@ -29,7 +29,6 @@
 				<tbody>
 					<c:forEach var="subject" items="${subjects}">
 						<tr>
-							<%-- Beanのプロパティ名に合わせて修正済み --%>
 							<td>${subject.subjectCd}</td>
 							<td>${subject.subjectName}</td>
 							

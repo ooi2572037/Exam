@@ -44,7 +44,7 @@
             </table>
 
             <div class="mt-4">
-                <a href="TestList.action" class="btn btn-secondary">検索画面に戻る</a>
+                <a href="TestSearch.action" class="btn btn-secondary">検索画面に戻る</a>
             </div>
 
         </section>

@@ -15,35 +15,20 @@
                 <div class="card-body">
 
                     <!-- 検索フォーム -->
-                    <form action="TestListStudent.action" method="get" class="mb-4">
+					<form action="TestListStudent.action" method="get" class="mb-4">
+					
+					    <h5 class="fw-bold mb-3">学生別検索</h5>
+					
+					    <div class="mb-3">
+					        <label class="form-label">学生番号</label>
+					        <input type="text" name="student_no" class="form-control" required placeholder="例：001">
+					    </div>
+					
+					    <button type="submit" class="btn btn-primary w-100">
+					        学生の成績一覧を表示
+					    </button>
+					</form>
 
-                        <h5 class="fw-bold mb-3">学生別検索</h5>
-
-                        <div class="mb-3">
-                            <label class="form-label">科目</label>
-                            <select name="subject_cd" class="form-select" required>
-                                <option value="">選択してください</option>
-                                <c:forEach var="s" items="${subjectList}">
-                                    <option value="${s.subjectCd}">${s.subjectName}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">クラス</label>
-                            <select name="class_num" class="form-select" required>
-                                <option value="">選択してください</option>
-								<c:forEach var="c" items="${classList}">
-								    <option value="${c}">${c}</option>
-								</c:forEach>
-
-                            </select>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary w-100">
-                            学生別成績一覧を表示
-                        </button>
-                    </form>
 
                     <hr>
 

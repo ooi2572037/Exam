@@ -2,6 +2,7 @@ package scoremanager.main;
 
 import java.util.List;
 
+import bean.ClassNum;
 import bean.Subject;
 import bean.Teacher;
 import dao.ClassNumDao;
