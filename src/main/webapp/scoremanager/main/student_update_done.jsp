@@ -16,8 +16,6 @@
 				<br>
 				<br>
 				<br>
-				<a href="StudentUpdate.action">戻る</a>
-				<a>　　　　　</a>
 				<a href="StudentList.action">学生一覧</a>
 			</div>
 		</div>

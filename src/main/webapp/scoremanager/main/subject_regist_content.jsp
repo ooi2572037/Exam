@@ -3,6 +3,11 @@
 
 <h2 class="h4 mb-3">科目登録</h2>
 
+<c:if test="${not empty error}">
+    <div class="alert alert-danger">${error}</div>
+</c:if>
+
+
 <form action="SubjectRegistExecute.action" method="post" class="mt-4">
 
     <!-- 学校選択 -->
@@ -31,3 +36,6 @@
 
     <button type="submit" class="btn btn-primary">登録</button>
 </form>
+	<div class="mt-4">
+		<a href="SubjectList.action" class="btn btn-secondary">メニューに戻る</a>
+	</div>

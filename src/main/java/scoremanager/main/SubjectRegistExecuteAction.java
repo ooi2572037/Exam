@@ -23,13 +23,23 @@ public class SubjectRegistExecuteAction extends Action {
         SchoolDao schoolDao = new SchoolDao();
         School school = schoolDao.get(schoolCd);
 
+        SubjectDao dao = new SubjectDao();
+
+        // ★ 重複チェック
+        if (dao.exists(schoolCd, subjectCd)) {
+            req.setAttribute("error", "科目コードが重複しています。");
+            req.setAttribute("schoolList", schoolDao.findAll()); // ← 再表示用
+            req.getRequestDispatcher("/scoremanager/main/subject_regist.jsp")
+               .forward(req, res);
+            return;
+        }
+
+        // ★ 重複していなければ登録
         Subject subject = new Subject();
         subject.setSubjectCd(subjectCd);
         subject.setSubjectName(subjectName);
         subject.setSchool(school);
-        subject.setSchoolCd(schoolCd);
 
-        SubjectDao dao = new SubjectDao();
         dao.insert(subject);
 
         req.setAttribute("subject", subject);
@@ -38,3 +48,4 @@ public class SubjectRegistExecuteAction extends Action {
            .forward(req, res);
     }
 }
+
