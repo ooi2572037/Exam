@@ -23,7 +23,7 @@ public class TestListStudentAction extends Action {
             return;
         }
 
-        // ★ 学生番号を取得
+        // 学生番号を取得
         String studentNo = req.getParameter("student_no");
 
         if (studentNo == null || studentNo.isEmpty()) {
@@ -32,20 +32,32 @@ public class TestListStudentAction extends Action {
             return;
         }
 
-        // DAO
+        // DAOのインスタンス化
         TestDao testDao = new TestDao();
 
-        // ★ 学生の全成績を取得
+        // 学生の全成績を取得
         List<Test> testList = testDao.findByStudent(
             teacher.getSchool(),
             studentNo
         );
 
+        // --- 追加したバリデーション処理 ---
+        if (testList == null || testList.isEmpty()) {
+            // エラーメッセージをセット
+            req.setAttribute("errors", "学生情報が存在しませんでした");
+            
+            // 検索画面（TestSearch.action）を呼び出して戻る
+            // ※URLは環境に合わせて適宜調整してください
+            req.getRequestDispatcher("TestSearch.action").forward(req, res);
+            return;
+        }
+        // --------------------------------
+
+        // データがある場合は結果画面へ
         req.setAttribute("studentNo", studentNo);
         req.setAttribute("testList", testList);
 
         req.getRequestDispatcher("/scoremanager/main/test_list_student.jsp")
-           .forward(req, res);
+            .forward(req, res);
     }
 }
-

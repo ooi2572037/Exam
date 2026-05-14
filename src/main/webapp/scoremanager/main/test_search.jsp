@@ -15,24 +15,32 @@
                 <div class="card-body">
 
                     <!-- 検索フォーム -->
-					<form action="TestListStudent.action" method="get" class="mb-4">
-					
-					    <h5 class="fw-bold mb-3">学生別検索</h5>
-					
-					    <div class="mb-3">
-					        <label class="form-label">学生番号</label>
-					        <input type="text" name="student_no" class="form-control" required placeholder="例：001">
-					    </div>
-					
-					    <button type="submit" class="btn btn-primary w-100">
-					        学生の成績一覧を表示
-					    </button>
-					</form>
+                    <form action="TestListStudent.action" method="get" class="mb-4">
+                    
+                        <h5 class="fw-bold mb-3">学生別検索</h5>
+                        
+                        <%-- Java側でセットしたエラーメッセージがあれば表示 --%>
+                        <c:if test="${not empty errors}">
+                            <div class="alert alert-danger py-2">
+                                ${errors}
+                            </div>
+                        </c:if>
+                    
+                        <div class="mb-3">
+                            <label class="form-label">学生番号</label>
+                            <%-- ブラウザ標準のチェック(required)も残しておくと親切です --%>
+                            <input type="text" name="student_no" class="form-control" required placeholder="例：001">
+                        </div>
+                    
+                        <button type="submit" class="btn btn-primary w-100">
+                            学生の成績一覧を表示
+                        </button>
+                    </form>
 
 
                     <hr>
 
-                    <!-- 科目別検索 -->
+                    <!-- 科目別検索（以下、変更なし） -->
                     <form action="TestListSubject.action" method="get">
 
                         <h5 class="fw-bold mb-3">科目別検索</h5>
