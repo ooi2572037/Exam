@@ -97,5 +97,31 @@ public class SchoolDao extends Dao{
 
 	    return list;
 	}
+	public List<School> findAll() throws Exception {
+
+	    List<School> list = new ArrayList<>();
+
+	    Connection con = getConnection();
+
+	    PreparedStatement st = con.prepareStatement(
+	        "SELECT school_cd, school_name FROM school ORDER BY school_cd"
+	    );
+
+	    ResultSet rs = st.executeQuery();
+
+	    while (rs.next()) {
+	        School s = new School();
+	        s.setSchoolCd(rs.getString("school_cd"));
+	        s.setSchoolName(rs.getString("school_name"));
+	        list.add(s);
+	    }
+
+	    rs.close();
+	    st.close();
+	    con.close();
+
+	    return list;
+	}
+
 
 }
